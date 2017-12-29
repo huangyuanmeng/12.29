@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="Content/css/style.css">
+</head>
+<body ng-controller="controller">
+    <div class="main">
+        <p>
+            <button ng-click="changTab('log')">登陆</button>
+            <button ng-click="changTab('reg')">注册</button>
+        </p>
+        <div class="deng" ng-show="loginFlag">
+            <h4>登陆</h4>
+            <div>
+                    <label for="username">用户名</label>
+                    <input type="text" id='username' placeholder="请输入用户名" ng-model='username' required>
+            </div>
+            <div>
+                    <label for="">密  码</label>
+                    <input type="password" id='mm' placeholder="请输入密码" required>
+            </div>
+            <button id='but' type='submit' ng-click='loginSubmit()'>登陆</button>
+        </div>
+        <div class="zhu"  ng-show="regFlag">
+            <h4>注册</h4>
+            <div>
+                    <label for="">用户名</label>
+                    <input type="text" placeholder="请输入用户名" required>
+            </div>
+            <div>
+                    <label for="">密  码</label>
+                    <input type="text" placeholder="请输入密码" required>
+            </div>
+            <div>
+                    <label for="">确认密码</label>
+                    <input type="text" placeholder="请再次输入密码" required>
+            </div>
+            <button id='but' ng-click="regSubmit()">注册</button>
+        </div>
+    </div>
+    <script src='js/angular.min.js'></script>
+    <script>
+        var username = document.getElementById('username')
+        var mm = document.getElementById('mm')        
+        var app = angular.module('app',[])
+        app.controller('controller',['$scope',function($scope){
+            $scope.username = "123112"
+            $scope.loginFlag = true;
+            $scope.regFlag = false;  
+            $scope.changTab = function(flag){
+                if(flag == "log"){
+                    $scope.loginFlag = true;
+                    $scope.regFlag = false; 
+                }else if(flag == 'reg'){
+                    $scope.loginFlag = false;
+                    $scope.regFlag = true; 
+                }
+            }  
+            $scope.loginSubmit = function(){
+                   if(username.value == "" ){
+                      alert('用户名不能为空')
+                   }else {
+                        if(mm.value == ""){
+                             alert('密码不能为空')
+                        }else{
+                            alert('登陆成功')
+                        }
+                   }
+            }
+            $scope.regSubmit = function(){
+                
+            }        
+        }])
+    </script>
+</body>
+</html>
